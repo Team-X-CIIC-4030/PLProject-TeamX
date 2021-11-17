@@ -1,0 +1,263 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    AS
+    ASSERT
+    AT
+    BACKQUOTE
+    CLASS
+    DEDENT
+    DEL
+    DOT
+    ELIF
+    EQEQUAL
+    EXCEPT
+    EXEC
+    FINALLY
+    FNUMBER
+    FROM
+    GLOBAL
+    GREATER
+    GREATEREQUAL
+    IMPORT
+    INDENT
+    INUMBER
+    IS
+    LAMBDA
+    LBRACE
+    LEFTSHIFT
+    LESS
+    LESSEQUAL
+    LSQB
+    MINEQUAL
+    NOT
+    NOTEQUAL
+    NUMBER
+    OR
+    PASS
+    PERCENT
+    PERCENTEQUAL
+    PLUSEQUAL
+    RAISE
+    RBRACE
+    RIGHTSHIFT
+    RSQB
+    SEMI
+    SLASH
+    SLASHEQUAL
+    SLASHSLASH
+    SLASHSLASHEQUAL
+    STAR
+    STAREQUAL
+    STARSTAR
+    STARSTAREQUAL
+    STRING
+    TILDE
+    TRY
+    WITH
+    WS
+    YIELD
+
+Grammar
+
+Rule 0     S' -> file_input
+Rule 1     file_input -> single_stmt ENDMARKER
+Rule 2     single_stmt -> single_stmt NEWLINE
+Rule 3     single_stmt -> <empty>
+Rule 4     single_stmt -> single_stmt stmt
+Rule 5     funcdef -> DEF NAME MarkerScope parameters MarkerArg COLON suite
+Rule 6     MarkerScope -> <empty>
+Rule 7     MarkerArg -> <empty>
+Rule 8     parameters -> LPAREN RPAREN
+Rule 9     parameters -> LPAREN varargslist RPAREN
+Rule 10    function_call -> NAME LPAREN RPAREN
+Rule 11    function_call -> NAME LPAREN testlist RPAREN
+Rule 12    varargslist -> fpdef
+Rule 13    varargslist -> fpdef EQUAL test
+Rule 14    varargslist -> fpdef COMMA varargslist
+Rule 15    varargslist -> fpdef EQUAL test COMMA varargslist
+Rule 16    fpdef -> NAME
+Rule 17    fpdef -> LPAREN fplist RPAREN
+Rule 18    fplist -> fpdef
+Rule 19    fplist -> fpdef COMMA fplist
+Rule 20    stmt -> simple_stmt
+Rule 21    stmt -> compound_stmt
+Rule 22    simple_stmt -> small_stmts NEWLINE
+Rule 23    small_stmts -> small_stmt
+Rule 24    small_stmt -> flow_stmt Marker
+Rule 25    small_stmt -> expr_stmt Marker
+Rule 26    small_stmt -> print_stmt Marker
+Rule 27    expr_stmt -> test EQUAL test
+Rule 28    expr_stmt -> test EQUAL function_call
+Rule 29    print_stmt -> PRINT
+Rule 30    print_stmt -> PRINT testlist
+Rule 31    flow_stmt -> break_stmt Marker
+Rule 32    flow_stmt -> return_stmt Marker
+Rule 33    flow_stmt -> continue_stmt Marker
+Rule 34    break_stmt -> BREAK
+Rule 35    continue_stmt -> CONTINUE
+Rule 36    return_stmt -> RETURN
+Rule 37    return_stmt -> RETURN test
+Rule 38    compound_stmt -> if_stmt Marker
+Rule 39    compound_stmt -> for_stmt Marker
+Rule 40    compound_stmt -> while_stmt Marker
+Rule 41    compound_stmt -> funcdef Marker
+Rule 42    compound_stmt -> function_call Marker
+Rule 43    if_stmt -> IF test COLON MarkerIf suite
+Rule 44    if_stmt -> IF test COLON MarkerIf suite ELSE COLON MarkerElse suite
+Rule 45    while_stmt -> WHILE Marker test COLON MarkerWhile suite
+Rule 46    Marker -> <empty>
+Rule 47    MarkerWhile -> <empty>
+Rule 48    MarkerIf -> <empty>
+Rule 49    MarkerElse -> <empty>
+Rule 50    for_stmt -> FOR atom IN test COLON MarkerFor suite
+Rule 51    MarkerFor -> <empty>
+Rule 52    expr -> xor_expr
+Rule 53    expr -> xor_expr VBAR expr
+Rule 54    xor_expr -> and_expr
+Rule 55    xor_expr -> and_expr CIRCUMFLEX xor_expr
+Rule 56    and_expr -> shift_expr
+Rule 57    and_expr -> shift_expr AMPER and_expr
+Rule 58    arith_expr -> term
+Rule 59    arith_expr -> term PLUS arith_expr
+Rule 60    arith_expr -> term MINUS arith_expr
+Rule 61    factor -> power
+Rule 62    factor -> PLUS factor
+Rule 63    factor -> MINUS factor
+Rule 64    listmaker -> test
+Rule 65    listmaker -> test COMMA listmaker
+Rule 66    stmts -> stmt stmts
+Rule 67    stmts -> stmt Marker
+
+Terminals, with rules where they appear
+
+AMPER                : 57
+AND                  : 
+AS                   : 
+ASSERT               : 
+AT                   : 
+BACKQUOTE            : 
+BREAK                : 34
+CIRCUMFLEX           : 55
+CLASS                : 
+COLON                : 5 43 44 44 45 50
+COMMA                : 14 15 19 65
+CONTINUE             : 35
+DEDENT               : 
+DEF                  : 5
+DEL                  : 
+DOT                  : 
+ELIF                 : 
+ELSE                 : 44
+ENDMARKER            : 1
+EQEQUAL              : 
+EQUAL                : 13 15 27 28
+EXCEPT               : 
+EXEC                 : 
+FINALLY              : 
+FNUMBER              : 
+FOR                  : 50
+FROM                 : 
+GLOBAL               : 
+GREATER              : 
+GREATEREQUAL         : 
+IF                   : 43 44
+IMPORT               : 
+IN                   : 50
+INDENT               : 
+INUMBER              : 
+IS                   : 
+LAMBDA               : 
+LBRACE               : 
+LEFTSHIFT            : 
+LESS                 : 
+LESSEQUAL            : 
+LPAREN               : 8 9 10 11 17
+LSQB                 : 
+MINEQUAL             : 
+MINUS                : 60 63
+NAME                 : 5 10 11 16
+NEWLINE              : 2 22
+NOT                  : 
+NOTEQUAL             : 
+NUMBER               : 
+OR                   : 
+PASS                 : 
+PERCENT              : 
+PERCENTEQUAL         : 
+PLUS                 : 59 62
+PLUSEQUAL            : 
+PRINT                : 29 30
+RAISE                : 
+RBRACE               : 
+RETURN               : 36 37
+RIGHTSHIFT           : 
+RPAREN               : 8 9 10 11 17
+RSQB                 : 
+SEMI                 : 
+SLASH                : 
+SLASHEQUAL           : 
+SLASHSLASH           : 
+SLASHSLASHEQUAL      : 
+STAR                 : 
+STAREQUAL            : 
+STARSTAR             : 
+STARSTAREQUAL        : 
+STRING               : 
+TILDE                : 
+TRY                  : 
+VBAR                 : 53
+WHILE                : 45
+WITH                 : 
+WS                   : 
+YIELD                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+Marker               : 24 25 26 31 32 33 38 39 40 41 42 45 67
+MarkerArg            : 5
+MarkerElse           : 44
+MarkerFor            : 50
+MarkerIf             : 43 44
+MarkerScope          : 5
+MarkerWhile          : 45
+and_expr             : 54 55 57
+arith_expr           : 59 60
+atom                 : 50
+break_stmt           : 31
+compound_stmt        : 21
+continue_stmt        : 33
+expr                 : 53
+expr_stmt            : 25
+factor               : 62 63
+file_input           : 0
+flow_stmt            : 24
+for_stmt             : 39
+fpdef                : 12 13 14 15 18 19
+fplist               : 17 19
+funcdef              : 41
+function_call        : 28 42
+if_stmt              : 38
+listmaker            : 65
+parameters           : 5
+power                : 61
+print_stmt           : 26
+return_stmt          : 32
+shift_expr           : 56 57
+simple_stmt          : 20
+single_stmt          : 1 2 4
+small_stmt           : 23
+small_stmts          : 22
+stmt                 : 4 66 67
+stmts                : 66
+suite                : 5 43 44 44 45 50
+term                 : 58 59 60
+test                 : 13 15 27 27 28 37 43 44 45 50 64 65
+testlist             : 11 30
+varargslist          : 9 14 15
+while_stmt           : 40
+xor_expr             : 52 53 55
+
