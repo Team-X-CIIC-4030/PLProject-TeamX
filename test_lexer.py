@@ -1,8 +1,5 @@
 import ply.lex as lex
 import ply.yacc as yacc
-import sys
-from ply.lex import TOKEN
-import tokenize
 
 tokens = ['INT', 'FLOAT', 'NAME', 'PLUS', 'MINUS', 'DIVIDE', 'MULTIPLY', 'EQUALS',
           'EQEQUAL', 'NOTEQUAL', 'LESSEQUAL', 'LEFTSHIFT', 'GREATEREQUAL',
@@ -82,7 +79,7 @@ precedence = (
 )
 
 
-# lexer.input("Javier")
+# lexer.input("Javier") test?
 #
 # while True:
 #     tok = lexer.token()

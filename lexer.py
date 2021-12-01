@@ -155,7 +155,8 @@ def t_WS(t):
 		pos = value.find("\t")
 		if pos == -1:
 			break
-		n = 8 - (pos % 8)								# Convert each \t to 8 spaces (Python Documentation)
+		n = 8 - (pos % 8)
+		# Convert each \t to 8 spaces (Python Documentation)
 		value = value[:pos] + " "*n + value[pos+1:]
 	t.value = value
 	if t.lexer.atLineStart and t.lexer.parenthesisCount == 0:
@@ -178,7 +179,8 @@ def identifyIndenations(lexer, token_stream):
 		elif token.type == "NEWLINE":
 			atLineStart = True
 			if indent == MAY_INDENT:
-				indent = MUST_INDENT  			# MUST INDENT
+				indent = MUST_INDENT
+			# MUST INDENT
 			token.must_indent = False
 		elif token.type == "WS":
 			assert token.atLineStart == True
@@ -216,7 +218,7 @@ def assignIndentations(token_stream):
 		if token.must_indent:
 			if not (depth > levels[-1]):
 				# raise IndentationError("Expected an indented block")
-				print ("Indentation Error in line no "+str(token.lineno))
+				print ("Indentation Error in line # "+str(token.lineno))
 				sys.exit()
 			levels.append(depth)
 			yield INDENT(token.lineno)
@@ -224,14 +226,14 @@ def assignIndentations(token_stream):
 			if depth == levels[-1]:
 				pass
 			elif depth > levels[-1]:
-				print ("Indentation Error in line no "+str(token.lineno))
+				print ("Indentation Error in line # "+str(token.lineno))
 				sys.exit()
 				# raise IndentationError("IndentationError: not in new block")
 			else:
 				try:
 					i = levels.index(depth)
 				except ValueError:
-					print ("Indentation Error in line no "+str(token.lineno))
+					print ("Indentation Error in line # "+str(token.lineno))
 					sys.exit()
 					# raise IndentationError("Inconsistent Indentation")
 				for z in range(i+1, len(levels)):
